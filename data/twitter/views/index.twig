@@ -1,0 +1,39 @@
+{% extends 'layout.twig' %}
+
+{% block body %}  
+  
+  <h1>{{title}}</h1>  
+  
+  {% if user.name %}
+  <a href='/users/logout'>Se Déconnecter</a>
+  {% else %}
+  <a href='/users/login'>Se Connecter</a>
+  {% endif %}
+  <br>
+  <br>
+  <label>Rechercher</label>
+  <input type='name' id='search'>
+  <br>
+  <br>  
+  
+  {%for tweet in posts%}
+  <table class="table table-striped">
+      <th scope="row">{{tweet.tweet}}</th>
+      <tr>{{tweet.user.name}}</tr>
+      <tr>{{tweet.date | date("m/d/Y")}}</tr>
+      <tr><a href='/tweet/{{tweet._id}}'>_Modifier_</a></tr>
+      <tr><a href="/tweet/{{tweet._id}}/comments" class="card-link">Commentaire_</a></tr>
+      
+  </table>
+  {%endfor%}  
+  
+  <form action="" id="formTweet" method="" >
+    <label for="tweet">Rédige ton tweet</label>
+    <br>
+    <textarea name='tweet' id='tweet' cols='30', rows ='2'></textarea>
+    <br>
+    <button>Tweet</button>
+  </form>
+
+  {% endblock %}
+
